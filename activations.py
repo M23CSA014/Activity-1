@@ -1,53 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Sigmoid activation function
 def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+    return 1 / (1 + np.exp(-np.array(x)))  # Convert x to a NumPy array
 
-# ReLU activation function
 def relu(x):
     return np.maximum(0, x)
 
-# Leaky ReLU activation function
 def leaky_relu(x, alpha=0.01):
+    x = np.array(x)  # Convert x to a NumPy array
     return np.where(x > 0, x, alpha * x)
 
-# Tanh activation function
 def tanh(x):
     return np.tanh(x)
 
-# Generate input data
-x = np.linspace(-5, 5, 100)
+# Given data
+random_values = [-3.5, -1.2, 0, 2.8, -4.1, 1.5, -0.7, 3.2, -2.4, 4.6]
 
-# Plot Sigmoid
-plt.plot(x, sigmoid(x), label='Sigmoid')
-plt.title('Sigmoid Activation Function')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
-plt.show()
+# Calculate activations for given data
+sigmoid_y = sigmoid(random_values)
+relu_y = relu(random_values)
+leaky_relu_y = leaky_relu(random_values)
+tanh_y = tanh(random_values)
 
-# Plot ReLU
-plt.plot(x, relu(x), label='ReLU', color='orange')
-plt.title('ReLU Activation Function')
-plt.xlabel('Input')
-plt.ylabel('Output')
+# Plot activations for given data
+plt.figure(figsize=(10, 6))
+plt.scatter(random_values, sigmoid_y, label='Sigmoid')
+plt.scatter(random_values, relu_y, label='ReLU')
+plt.scatter(random_values, leaky_relu_y, label='Leaky ReLU')
+plt.scatter(random_values, tanh_y, label='Tanh')
 plt.legend()
-plt.show()
-
-# Plot Leaky ReLU
-plt.plot(x, leaky_relu(x), label='Leaky ReLU', color='green')
-plt.title('Leaky ReLU Activation Function')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
-plt.show()
-
-# Plot Tanh
-plt.plot(x, tanh(x), label='Tanh', color='red')
-plt.title('Tanh Activation Function')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
+plt.xlabel('x')
+plt.ylabel('Activation')
+plt.title('Activation Functions for Given Data')
+plt.grid(True)
 plt.show()
