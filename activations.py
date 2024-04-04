@@ -25,7 +25,7 @@ tanh_y = tanh(random_values)
 
 # Plot activations for given data
 plt.figure(figsize=(10, 6))
-plt.scatter(random_values, sigmoid_y, label='Sigmoid')
+# plt.scatter(random_values, sigmoid_y, label='Sigmoid')
 plt.scatter(random_values, relu_y, label='ReLU')
 plt.scatter(random_values, leaky_relu_y, label='Leaky ReLU')
 plt.scatter(random_values, tanh_y, label='Tanh')
